@@ -1,0 +1,71 @@
+2025-07-11 16:39:34,716 - INFO - Starting Beto Cosmetics scraper
+2025-07-11 16:39:34,716 - INFO - Starting scrape for minimum 10 products
+2025-07-11 16:39:34,716 - INFO - Discovering products from: https://betocosmetics.com/products/
+2025-07-11 16:39:34,716 - INFO - Fetching URL: https://betocosmetics.com/products/ (attempt 1)
+2025-07-11 16:39:36,734 - INFO - Discovered 0 product URLs
+2025-07-11 16:39:36,734 - ERROR - No product URLs discovered
+2025-07-11 16:39:36,734 - ERROR - No products were scraped successfully
+2025-07-11 16:43:13,860 - INFO - Starting Beto Cosmetics scraper v2
+2025-07-11 16:43:13,861 - INFO - Starting scrape for minimum 10 products
+2025-07-11 16:43:13,861 - INFO - Fetching products from Shopify JSON API
+2025-07-11 16:43:13,861 - INFO - Fetching page 1 from API: https://betocosmetics.com/products.json
+2025-07-11 16:43:14,082 - INFO - Fetched 15 products from page 1, total: 15
+2025-07-11 16:43:15,087 - INFO - Total products fetched from API: 15
+2025-07-11 16:43:15,087 - INFO - Processing product 1/15
+2025-07-11 16:43:15,089 - ERROR - Error processing product Dr Rashel Beard Oil for Men Moisturizing Smooth Nourishing Hair 50ML: 'NoneType' object has no attribute 'strip'
+2025-07-11 16:43:15,089 - INFO - Processing product 2/15
+2025-07-11 16:43:15,090 - ERROR - Error processing product SKALA Mais Crespos Super Curly Hair Type 4ABC - Hydrate , Eliminate Frizz 2 IN 1 Conditioning Treatment Cream and Cream To Comb 35.2oz: 'NoneType' object has no attribute 'strip'
+2025-07-11 16:43:15,090 - INFO - Processing product 3/15
+2025-07-11 16:43:15,090 - ERROR - Error processing product SKALA Hair Type 3ABC Mais Cachos - More Curls Eliminate Anti Frizz, For Curly Hair 2 in 1 Conditioning Treatment Cream 35.2Oz: 'NoneType' object has no attribute 'strip'
+2025-07-11 16:43:15,090 - INFO - Processing product 4/15
+2025-07-11 16:43:16,653 - INFO - Processed product: Dream Skin Cream tube
+2025-07-11 16:43:16,654 - INFO - Processing product 5/15
+2025-07-11 16:43:18,180 - INFO - Processed product: Melano Perfume Body Splash Wicked in Secret 250ml
+2025-07-11 16:43:18,180 - INFO - Processing product 6/15
+2025-07-11 16:43:19,702 - INFO - Processed product: Melano Perfume Body Splash Very sexy Now 250ml
+2025-07-11 16:43:19,702 - INFO - Processing product 7/15
+2025-07-11 16:43:21,217 - INFO - Processed product: Melano Perfume Body Splash Pink Petal 250ml
+2025-07-11 16:43:21,217 - INFO - Processing product 8/15
+2025-07-11 16:43:22,812 - INFO - Processed product: Melano Perfume Body Splash Greetings 250ml
+2025-07-11 16:43:22,812 - INFO - Processing product 9/15
+2025-07-11 16:43:24,367 - INFO - Processed product: Melano Perfume Body Splash Folie 250ml
+2025-07-11 16:43:24,367 - INFO - Processing product 10/15
+2025-07-11 16:43:25,969 - INFO - Processed product: Melano Perfume Body Splash Cashmere 250ml
+2025-07-11 16:43:25,969 - INFO - Processing product 11/15
+2025-07-11 16:43:27,502 - INFO - Processed product: Melano papayatone Brightening cream 150ml
+2025-07-11 16:43:27,502 - INFO - Processing product 12/15
+2025-07-11 16:43:29,029 - INFO - Processed product: Melanotone black spot corrector soap 100g
+2025-07-11 16:43:29,029 - INFO - Processing product 13/15
+2025-07-11 16:43:30,542 - INFO - Processed product: Melanotone black spot corrector serum 60ml
+2025-07-11 16:43:30,542 - INFO - Successfully scraped 10 products
+2025-07-11 16:43:30,554 - INFO - Data saved to beto_cosmetics_products_v2.csv
+2025-07-11 16:43:30,554 - INFO - Analyzing ingredient overlap
+2025-07-11 16:43:30,555 - INFO - Found 45 product pairs with 2+ shared ingredients
+2025-07-11 16:43:30,557 - INFO - Ingredient overlap analysis saved to ingredient_overlap_analysis_v2.csv
+2025-07-11 16:43:30,558 - INFO - 
+=== SCRAPING SUMMARY ===
+2025-07-11 16:43:30,558 - INFO - Total products scraped: 10
+2025-07-11 16:43:30,558 - INFO - Products with ingredients: 10
+2025-07-11 16:43:30,558 - INFO - Products with prices: 10
+2025-07-11 16:43:30,558 - INFO - Products with SKU: 10
+2025-07-11 16:43:30,558 - INFO - Products with images: 10
+2025-07-11 16:43:30,558 - INFO - Products with brand: 10
+2025-07-11 16:43:30,558 - INFO - Product pairs with 2+ shared ingredients: 45
+2025-07-11 16:43:30,558 - INFO - 
+=== SAMPLE PRODUCTS ===
+2025-07-11 16:43:30,558 - INFO - 1. Dream Skin Cream tube
+2025-07-11 16:43:30,558 - INFO -    SKU: 6040000000000
+2025-07-11 16:43:30,558 - INFO -    Brand: Dream Skin
+2025-07-11 16:43:30,558 - INFO -    Price: BD 3.000
+2025-07-11 16:43:30,558 - INFO -    Ingredients: IngredientsAvocado Hair CareJamaican Black Castor Oil Hair CareCoconut Hair CareSulfate Free Hair Ca...
+2025-07-11 16:43:30,558 - INFO - 2. Melano Perfume Body Splash Wicked in Secret 250ml
+2025-07-11 16:43:30,558 - INFO -    SKU: 6224010808669
+2025-07-11 16:43:30,558 - INFO -    Brand: Melano
+2025-07-11 16:43:30,558 - INFO -    Price: BD 3.500
+2025-07-11 16:43:30,558 - INFO -    Ingredients: IngredientsAvocado Hair CareJamaican Black Castor Oil Hair CareCoconut Hair CareSulfate Free Hair Ca...
+2025-07-11 16:43:30,558 - INFO - 3. Melano Perfume Body Splash Very sexy Now 250ml
+2025-07-11 16:43:30,558 - INFO -    SKU: 6224010808591
+2025-07-11 16:43:30,558 - INFO -    Brand: Melano
+2025-07-11 16:43:30,558 - INFO -    Price: BD 3.500
+2025-07-11 16:43:30,558 - INFO -    Ingredients: IngredientsAvocado Hair CareJamaican Black Castor Oil Hair CareCoconut Hair CareSulfate Free Hair Ca...
+2025-07-11 16:43:30,558 - INFO - Scraping completed successfully!
