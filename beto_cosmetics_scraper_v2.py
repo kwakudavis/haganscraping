@@ -194,6 +194,10 @@ class BetoCosmeticsScraperV2:
         Returns:
             Processed product data dictionary
         """
+        if not isinstance(product_json, dict):
+            logger.error("Invalid product data provided")
+            return None
+
         try:
             # Extract basic product information
             product_data = {

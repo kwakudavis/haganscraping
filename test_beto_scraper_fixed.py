@@ -11,13 +11,14 @@ Tests all major functionality including:
 
 import pytest
 import requests
+import re
 import json
 import pandas as pd
 from unittest.mock import Mock, patch
 import tempfile
 import os
 import sys
-import requests_mock
+import requests_mock as req_mock
 
 # Add the project root to the path so we can import our modules
 sys.path.insert(0, os.path.dirname(__file__))
@@ -84,7 +85,7 @@ class TestBetoCosmeticsScraper:
         """Test successful product fetch from JSON API."""
         # Mock the API response
         requests_mock.get(
-            "https://betocosmetics.com/products.json",
+            re.compile(r"https://betocosmetics.com/products.json.*"),
             json=self.sample_api_response
         )
         
@@ -97,7 +98,7 @@ class TestBetoCosmeticsScraper:
     def test_get_products_from_json_api_empty_response(self, requests_mock):
         """Test API response with no products."""
         requests_mock.get(
-            "https://betocosmetics.com/products.json",
+            re.compile(r"https://betocosmetics.com/products.json.*"),
             json={"products": []}
         )
         
@@ -108,7 +109,7 @@ class TestBetoCosmeticsScraper:
     def test_get_products_from_json_api_network_error(self, requests_mock):
         """Test handling of network errors."""
         requests_mock.get(
-            "https://betocosmetics.com/products.json",
+            re.compile(r"https://betocosmetics.com/products.json.*"),
             exc=requests.exceptions.ConnectionError("Network error")
         )
         
@@ -208,16 +209,18 @@ class TestBetoCosmeticsScraper:
     def test_scrape_products_success(self, requests_mock):
         """Test successful full scraping workflow."""
         # Mock API response
+        # Mock product pages first to avoid matching the API request
+        product_html = "<html><body><div>Product page</div></body></html>"
+        requests_mock.get(req_mock.ANY, text=product_html)
+
+        # Mock API response
         requests_mock.get(
-            "https://betocosmetics.com/products.json",
+            re.compile(r"https://betocosmetics.com/products.json.*"),
             json={"products": [self.sample_shopify_product] * 3}
         )
         
-        # Mock product pages
-        product_html = "<html><body><div>Product page</div></body></html>"
-        requests_mock.get(requests_mock.ANY, text=product_html)
-        
-        products = self.scraper.scrape_products(min_products=2, fetch_additional=False)
+        scraper = BetoCosmeticsScraperV2(delay=0.1)
+        products = scraper.scrape_products(min_products=2, fetch_additional=False)
         
         assert len(products) >= 2
         assert all('product_name' in product for product in products)
@@ -226,7 +229,7 @@ class TestBetoCosmeticsScraper:
     def test_scrape_products_api_failure(self, requests_mock):
         """Test scraping when API fails."""
         requests_mock.get(
-            "https://betocosmetics.com/products.json",
+            re.compile(r"https://betocosmetics.com/products.json.*"),
             status_code=500
         )
         
@@ -492,7 +495,7 @@ class TestValidationAndEdgeCases:
 
 def test_integration_workflow():
     """Integration test for the complete workflow."""
-    with requests_mock.Mocker() as m:
+    with req_mock.Mocker() as m:
         # Mock successful API response
         api_response = {
             "products": [
@@ -513,15 +516,16 @@ def test_integration_workflow():
             ]
         }
         
-        m.get("https://betocosmetics.com/products.json", json=api_response)
-        
-        # Mock product pages with ingredients
+        # Mock product pages with ingredients first
         product_html = """
         <html><body>
-        <div class="ingredients">Ingredients: Water, Glycerin, Vitamin E</div>
+        <div class="ingredients">Ingredients: Water, Glycerin, Vitamin E, Coconut Oil, Shea Butter</div>
         </body></html>
         """
-        m.get(requests_mock.ANY, text=product_html)
+        m.get(req_mock.ANY, text=product_html)
+
+        # Mock API response
+        m.get(re.compile(r"https://betocosmetics.com/products.json.*"), json=api_response)
         
         # Run full workflow
         scraper = BetoCosmeticsScraperV2(delay=0.1)
